@@ -1,10 +1,10 @@
-#include "GameWithoutStrategy.hpp"
+#include "BattleWithoutStrategy.hpp"
 #include <iostream>
 #include <random>  
 #include <chrono>
 #include <thread>  
 
-void Game::SaveYourself(){
+void Battle::SaveYourself(){
 
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 
@@ -19,7 +19,7 @@ void Game::SaveYourself(){
     }else std::cout << "You won!\n"; 
 }
 
-void Game::AllRoundDefence(){
+void Battle::AllRoundDefence(){
 
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 
@@ -33,7 +33,7 @@ void Game::AllRoundDefence(){
         std::cout << "You lose!\n";
     }else std::cout << "You won!\n"; 
 }
-void Game::Testudo(){
+void Battle::Testudo(){
 
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 
@@ -47,7 +47,7 @@ void Game::Testudo(){
         std::cout << "You lose!\n";
     }else std::cout << "You won!\n"; 
 }
-void Game::Phalanga(){
+void Battle::Phalanga(){
 
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 
@@ -61,7 +61,7 @@ void Game::Phalanga(){
         std::cout << "You lose!\n";
     }else std::cout << "You won!\n"; 
 }
-void Game::RunAway(){
+void Battle::RunAway(){
 
     using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 

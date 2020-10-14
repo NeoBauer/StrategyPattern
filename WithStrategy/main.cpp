@@ -1,62 +1,42 @@
 #include "BattleWithStrategy.hpp"
+#include "IStrategy.hpp"
 #include "StrategyAllRoundDefence.hpp"
 #include "StrategyPhalanga.hpp"
 #include "StrategyRunAway.hpp"
 #include "StrategySaveYourself.hpp"
 #include "StrategyTestudo.hpp"
 #include <iostream>
+#include <map>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 int main() {
 
-  std::vector<std::pair<std::string, int>> enumMap = {{"Phalanga", 1},
-                                                      {"Testudo", 2},
-                                                      {"AllRoundDefence", 3},
-                                                      {"SaveYourself", 4}};
+  std::map<std::pair<int, std::string>, IStrategy *> StrategyMap = {
+      {{1, "Phalanga"}, new StrategyPhalanga},
+      {{2, "Testudo"}, new StrategyTestudo},
+      {{3, "AllRoundDefence"}, new StrategyAllRoundDefence},
+      {{4, "SaveYourself"}, new StrategySaveYourself}};
 
   std::cout << "You are Poncius Cpplius, and now it is time for a battle.\nYou "
                "are under attack in Teutoburg forest.\n";
   std::cout << "There is no chance to retreat.\n\n";
   std::cout << "Available options: \n\n";
 
-  for (const auto &[text, value] : enumMap) {
-    std::cout << value << '.' << text << '\n';
+  for (const auto &[key, strategy] : StrategyMap) {
+    std::cout << key.first << '.' << key.second << '\n';
   }
   std::cout << "\nChoose your attack strategy: ";
-  int strategy{};
-  std::cin >> strategy;
+  int ChoosenStrategy{};
+  std::cin >> ChoosenStrategy;
 
-  switch (strategy) {
-  case 1: {
-    StrategyPhalanga *PhStrategy = new StrategyPhalanga;
-    Battle *newBattle = new Battle(PhStrategy);
-    newBattle->Fight();
-    break;
-  }
-  case 2: {
-    StrategyTestudo *TStrategy = new StrategyTestudo;
-    Battle *newBattle = new Battle(TStrategy);
-    newBattle->Fight();
-  }
-  case 3: {
-    StrategyAllRoundDefence *ALRStrategy = new StrategyAllRoundDefence;
-    Battle *newBattle = new Battle(ALRStrategy);
-    newBattle->Fight();
-    break;
-  }
-  case 4: {
-    StrategySaveYourself *SYStrategy = new StrategySaveYourself;
-    Battle *newBattle = new Battle(SYStrategy);
-    newBattle->Fight();
-    break;
-  }
-  default: {
-    StrategyRunAway *RAStrategy = new StrategyRunAway;
-    Battle *newBattle = new Battle(RAStrategy);
-    newBattle->Fight();
-    break;
-  }
+  for (auto &[key, strategy] : StrategyMap) {
+
+    if (ChoosenStrategy == key.first) {
+      Battle *newBattle = new Battle(strategy);
+      newBattle->Fight();
+    }
   }
 
   return 0;

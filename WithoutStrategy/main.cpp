@@ -1,14 +1,14 @@
-#include "GameWithoutStrategy.hpp"
+#include "BattleWithoutStrategy.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
 
 int main() {
 
-  std::vector<std::pair<std::string, int>> enumMap = {{"Phalanga", 1},
-                                                  {"Testudo", 2},
-                                                  {"AllRoundDefence", 3},
-                                                  {"SaveYourself", 4}};
+  std::vector<std::pair<std::string, int>> enumMap = {{"SaveYourself", 1},
+                                                  {"AllRoundDefence", 2},
+                                                  {"Testudo", 3},
+                                                  {"Phalanga", 4}};
 
   std::cout << "You are Poncius Cpplius, and now it is time for a battle.\nYou "
                "are under attack in Teutoburg forest.\n";
@@ -21,7 +21,7 @@ int main() {
   std::cout << "\nChoose your attack strategy: ";
   int strategy{};
   std::cin >> strategy;
-  Game battle{};
+  Battle battle{};
 
   switch (strategy) {
   case 1:
